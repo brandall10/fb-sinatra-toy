@@ -1,0 +1,38 @@
+$orange:#D78123;
+$blue:#1E1641;
+
+#header>h1{
+	color: $blue;
+	font-family:sans-serif;
+}
+
+.comments{
+	padding: 0;
+	list-style: none;
+	width: 400px;
+}
+.comment{
+	color: $orange;
+	position: relative;
+	padding: 2px 0 2px 28px;
+	border-bottom: dotted 1px #ccc;
+}
+form.update{
+	position: absolute;
+	bottom: 2px;
+	left: 0;
+}
+form.update input{
+	background: white;
+	color: white;
+	padding: 0 2px;
+	border: solid 1px gray;
+}
+form.delete{
+	display: inline;
+}
+form.delete input{
+	background: none;
+	cursor: pointer;
+	border: none;
+}

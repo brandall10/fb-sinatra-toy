@@ -2,11 +2,12 @@ require 'sinatra'
 require 'data_mapper'
 require 'koala'
 require 'haml'
+require 'sass'
 require './db/dmconfig'
 
 APP_ID = 356300754405030
 APP_SECRET = 'a7504467c9357caf0fde23c88071bea8'
-SITE_URL = 'http://localhost:9393/' 
+SITE_URL = 'http://localhost:9393/'
 
 include Koala
 enable :sessions
@@ -68,3 +69,8 @@ delete '/comment/:id' do
 
 	redirect '/'
 end
+
+get '/styles.css' do
+	scss :styles
+end
+
