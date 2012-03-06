@@ -1,8 +1,6 @@
 %a(name="Logout"){:href => '/logout'}Logout
-#header
-	%h1 Comments 
-#content
-	%ul.comments
+%h2 Comments 
+%ul.comments
 	- @comments.each do |comment|
 		= haml :comment, locals: { comment: comment }
 		%br/
