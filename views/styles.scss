@@ -5,7 +5,6 @@ $blue:#1E1641;
 	color: $blue;
 	font-family:sans-serif;
 }
-
 .comments{
 	padding: 0;
 	list-style: none;
@@ -21,18 +20,18 @@ form.update{
 	position: absolute;
 	bottom: 2px;
 	left: 0;
-}
-form.update input{
-	background: white;
-	color: white;
-	padding: 0 2px;
-	border: solid 1px gray;
+	input{
+		background: white;
+		color: white;
+		padding: 0 2px;
+		border: solid 1px gray;
+	}
 }
 form.delete{
 	display: inline;
-}
-form.delete input{
-	background: none;
-	cursor: pointer;
-	border: none;
+	input{
+		background: none;
+		cursor: pointer;
+		border: none;
+	}
 }
