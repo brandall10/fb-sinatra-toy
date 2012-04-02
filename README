@@ -1,0 +1,6 @@
+Toy project to demonstrate
+
+1) Using sinatra w/ HAML && SASS
+2) DataMapper
+3) FB authentication 
+4) FB graph api to post wall comments
