@@ -1,5 +1,12 @@
 #header
-	%h1 Haml example
+	%h1 Comments 
 #content
 	%p
-		This is an example using HAML on Sinatra
+	- @comments.each do |comment|
+		User:
+		= comment.fbid
+		%br/
+		Comment:	
+		= comment.comment 
+		%br/ 
+		%br/ 

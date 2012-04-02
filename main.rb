@@ -18,7 +18,7 @@ end
 DataMapper.finalize
 
 get '/' do
-#	@comments = Comment.all
+	@comments = Comment.all
 	haml :index
 end
 
