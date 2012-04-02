@@ -22,10 +22,11 @@ get '/' do
 	haml :index
 end
 
-#post '/'
-#	Comment.create params[:comment]
-#	redirect to('/')
-#end
+post '/' do
+	puts "This is the comment: #{params[:comment]}"
+	Comment.create params[:comment]
+	redirect to('/')
+end
 
 #delete '/comment/:id'
 #	Comment.get(params[:id]).destroy
