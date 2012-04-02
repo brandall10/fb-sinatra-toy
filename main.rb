@@ -23,12 +23,11 @@ get '/' do
 end
 
 post '/' do
-	puts "This is the comment: #{params[:comment]}"
 	Comment.create params[:comment]
 	redirect to('/')
 end
 
-#delete '/comment/:id'
-#	Comment.get(params[:id]).destroy
-#	redirect to('/')
-#end
+delete '/comment/:id' do
+	Comment.get(params[:id]).destroy
+	redirect to('/')
+end

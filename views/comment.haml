@@ -1,0 +1,8 @@
+%li.comment 
+	User: 
+	= comment.fbid
+	, Comment:	
+	= comment.comment
+	%form(action="/comment/#{comment.id}" method="POST")
+		%input(type="hidden" name="_method" value="DELETE")
+		%input(type="submit" value="Delete")
