@@ -1,9 +1,8 @@
-require 'data_mapper'
-
 class Comment
 	include DataMapper::Resource
-	property :id,	Serial
-	property :fbid, String, :required => true
-	property :fbuid, String, :required => true
+
+	property :id, String, :key => true # id == comment_id
 	property :comment, String, :required => true
+
+	belongs_to :user, :required => false
 end

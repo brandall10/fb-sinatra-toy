@@ -1,6 +1,6 @@
 %li.comment 
 	User: 
-	= comment.fbuid
+	= comment.user.name
 	, Comment:	
 	= comment.comment
 	%form(action="/comment/#{comment.id}" method="POST")

@@ -13,7 +13,8 @@ enable :sessions
 
 get '/' do
 	if session['access_token']
-		@comments = Comment.all
+		user = User.get(session['user_id'])
+		@comments = user.comments
 		haml :index
 	else
 		haml :login
@@ -31,28 +32,39 @@ get '/logout' do
 	session['oauth'] = nil
 	session['access_token'] = nil
 	session['graph'] = nil
+	session['user_id'] = nil
+
 	redirect '/'
 end
 
 get '/callback' do
+	# store authentication token, graph api ptr, and fb user info
 	session['access_token'] = session['oauth'].get_access_token(params[:code])
 	session['graph'] = Facebook::API.new (session['access_token'])
+	me = session['graph'].get_object('me')
+	
+	# create or fetch user record from db, save off for session 
+	user = User.first_or_create( {:id => me['id']}, {:name => me['name']} )
+	session['user_id'] = user.id
 	redirect '/'
 end
 
 post '/' do
 	# must pull back facebook's object id so we can modify afterward, take note to pull from hash
 	# write to both facebook and db to keep parity
-	fbid =  session['graph'].put_wall_post(params[:comment][:comment])["id"]
-	params[:comment][:fbid] = fbid
-	Comment.create params[:comment]
+	post_id =  session['graph'].put_wall_post(params[:comment][:comment])['id']
+	params[:comment][:id] = post_id
+	user = User.get(session['user_id'])
+	user.comments.create(params[:comment])
 	redirect '/'
 end
 
 delete '/comment/:id' do
 	comment = Comment.get(params[:id])
+
 	# delete both from facebook and the database
-	session['graph'].delete_object(comment.fbid)
+	session['graph'].delete_object(comment.id)
 	comment.destroy
+
 	redirect '/'
 end
